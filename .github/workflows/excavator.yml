@@ -1,0 +1,41 @@
+name: Excavator (auto-update manifests)
+
+on:
+  schedule:
+    - cron: '0 6 * * *'  # Tous les jours à 06:00 UTC
+  workflow_dispatch: {}
+
+jobs:
+  excavate:
+    runs-on: windows-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run Excavator
+        uses: NoMoreFood/scoop-bucket-template/.github/actions/excavator@main
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+        continue-on-error: true
+
+      - name: Fallback (manual checkver/autoupdate via Scoop)
+        if: failure()
+        shell: pwsh
+        run: |
+          # Install Scoop (sans interactif)
+          Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned -Force
+          irm get.scoop.sh -outfile install.ps1
+          .\install.ps1 -RunAsAdmin
+          # Add cette bucket et auto-update
+          scoop bucket add scoop-alter "$env:GITHUB_WORKSPACE"
+          scoop checkver scoop-alter/* --update
+          # Commit
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add bucket/
+          git diff --cached --quiet || git commit -m "chore(excavator): auto-update manifests"
+          git push
