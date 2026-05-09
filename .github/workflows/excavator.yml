@@ -2,40 +2,47 @@ name: Excavator (auto-update manifests)
 
 on:
   schedule:
-    - cron: '0 6 * * *'  # Tous les jours à 06:00 UTC
+    - cron: '0 6 * * *'
   workflow_dispatch: {}
+
+permissions:
+  contents: write
 
 jobs:
   excavate:
     runs-on: windows-latest
-    permissions:
-      contents: write
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v4
 
-      - name: Run Excavator
-        uses: NoMoreFood/scoop-bucket-template/.github/actions/excavator@main
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-        continue-on-error: true
-
-      - name: Fallback (manual checkver/autoupdate via Scoop)
-        if: failure()
+      - name: Install Scoop
         shell: pwsh
         run: |
-          # Install Scoop (sans interactif)
-          Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned -Force
-          irm get.scoop.sh -outfile install.ps1
+          Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
+          [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.SecurityProtocolType]::Tls12
+          irm get.scoop.sh -OutFile install.ps1
           .\install.ps1 -RunAsAdmin
-          # Add cette bucket et auto-update
-          scoop bucket add scoop-alter "$env:GITHUB_WORKSPACE"
-          scoop checkver scoop-alter/* --update
-          # Commit
+
+      - name: Run checkver -Update on all manifests
+        shell: pwsh
+        run: |
+          $scoopRoot = "$env:USERPROFILE\scoop\apps\scoop\current"
+          if (-not (Test-Path "$scoopRoot\bin\checkver.ps1")) {
+            Write-Error "checkver.ps1 not found"
+            exit 1
+          }
+          & "$scoopRoot\bin\checkver.ps1" -App '*' -Dir "$env:GITHUB_WORKSPACE\bucket" -Update -ForceUpdate
+
+      - name: Commit and push
+        shell: pwsh
+        run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add bucket/
-          git diff --cached --quiet || git commit -m "chore(excavator): auto-update manifests"
-          git push
+          $changed = (git diff --cached --name-only)
+          if ($changed) {
+            git commit -m "chore(excavator): auto-update manifests"
+            git push
+            Write-Host "Updated: $changed"
+          } else {
+            Write-Host "No manifest update needed"
+          }
