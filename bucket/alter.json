@@ -4,7 +4,7 @@
     "homepage": "https://alter.visialis.fr",
     "license": "Proprietary",
     "url": "https://github.com/VISIALIS/homebrew-alter/releases/download/v1.11.3/Alter-1.11.3-windows.zip",
-    "hash": "1e79925c75205a63177fa0c5d8397da62609ad5e1d7e837f0bf70af235acc687",
+    "hash": "f2cb6567da9ede8698579d2ce81879a0b8083a26b8f2abbb676c99d8b15a74d4",
     "extract_dir": "",
     "bin": "alter.exe",
     "shortcuts": [
