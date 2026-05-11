@@ -1,10 +1,10 @@
 {
-    "version": "1.11.3",
+    "version": "1.13.1",
     "description": "Alter MCP server — Expose Alter classification to AI agents via the Model Context Protocol (Claude, Cursor, OpenCode, Gemini).",
     "homepage": "https://alter.visialis.fr",
     "license": "Proprietary",
-    "url": "https://github.com/VISIALIS/homebrew-alter/releases/download/v1.11.3/alter-mcp-windows-x64.exe",
-    "hash": "40dfe4fc407d3a611a3377157be83a4c00141c60b55678cef79295f945292cdf",
+    "url": "https://github.com/VISIALIS/homebrew-alter/releases/download/v1.13.1/alter-mcp-windows-x64.exe",
+    "hash": "14a74bf00961c6620616cdc26d8e1f685e2360affd3f1e149293e1890bfac20b",
     "bin": [
         [
             "alter-mcp-windows-x64.exe",
