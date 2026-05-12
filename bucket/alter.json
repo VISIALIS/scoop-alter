@@ -1,10 +1,10 @@
 {
-    "version": "1.11.3",
+    "version": "1.13.7",
     "description": "Alter Desktop — GUI for classifying EVM addresses (Flutter desktop app).",
     "homepage": "https://alter.visialis.fr",
     "license": "Proprietary",
-    "url": "https://github.com/VISIALIS/homebrew-alter/releases/download/v1.11.3/Alter-1.11.3-windows.zip",
-    "hash": "f2cb6567da9ede8698579d2ce81879a0b8083a26b8f2abbb676c99d8b15a74d4",
+    "url": "https://github.com/VISIALIS/homebrew-alter/releases/download/v1.13.7/Alter-1.13.7-windows.zip",
+    "hash": "d0fdb2c3a8502b2e6ab863eb330f9656d13b94f8ba488ba14ce573f6a9db3c2d",
     "extract_dir": "",
     "bin": "alter.exe",
     "shortcuts": [
