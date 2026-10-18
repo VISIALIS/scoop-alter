@@ -1,20 +1,41 @@
 {
-    "version": "1.13.7",
+    "version": "1.32.1",
     "description": "Alter MCP server — Expose Alter classification to AI agents via the Model Context Protocol (Claude, Cursor, OpenCode, Gemini).",
     "homepage": "https://alter.visialis.fr",
     "license": "Proprietary",
-    "url": "https://github.com/VISIALIS/homebrew-alter/releases/download/v1.13.7/alter-mcp-windows-x64.exe",
-    "hash": "f1ab27e3cf8102d26722f8985814903114e215742cee8e0e916fd29f5d3ab810",
-    "bin": [
-        [
-            "alter-mcp-windows-x64.exe",
-            "alter-mcp"
-        ]
-    ],
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/VISIALIS/alter/releases/download/v1.32.1/alter-mcp-windows-x64.exe",
+            "hash": "c567012513c541277c8e78872e7acb9acca092e7831c8527d478822269f70816",
+            "bin": [
+                [
+                    "alter-mcp-windows-x64.exe",
+                    "alter-mcp"
+                ]
+            ]
+        },
+        "arm64": {
+            "url": "https://github.com/VISIALIS/alter/releases/download/v1.32.1/alter-mcp-windows-arm64.exe",
+            "hash": "b2b597e2b5c5bea5658ecd2067fb9f207ca821c14033fb747e039fdd11579249",
+            "bin": [
+                [
+                    "alter-mcp-windows-arm64.exe",
+                    "alter-mcp"
+                ]
+            ]
+        }
+    },
     "checkver": {
-        "github": "https://github.com/VISIALIS/homebrew-alter"
+        "github": "https://github.com/VISIALIS/alter"
     },
     "autoupdate": {
-        "url": "https://github.com/VISIALIS/homebrew-alter/releases/download/v$version/alter-mcp-windows-x64.exe"
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/VISIALIS/alter/releases/download/v$version/alter-mcp-windows-x64.exe"
+            },
+            "arm64": {
+                "url": "https://github.com/VISIALIS/alter/releases/download/v$version/alter-mcp-windows-arm64.exe"
+            }
+        }
     }
 }

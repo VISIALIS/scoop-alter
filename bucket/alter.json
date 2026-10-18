@@ -1,10 +1,18 @@
 {
-    "version": "1.13.7",
+    "version": "1.32.1",
     "description": "Alter Desktop — GUI for classifying EVM addresses (Flutter desktop app).",
     "homepage": "https://alter.visialis.fr",
     "license": "Proprietary",
-    "url": "https://github.com/VISIALIS/homebrew-alter/releases/download/v1.13.7/Alter-1.13.7-windows.zip",
-    "hash": "d0fdb2c3a8502b2e6ab863eb330f9656d13b94f8ba488ba14ce573f6a9db3c2d",
+    "architecture": {
+        "64bit": {
+            "url": "https://github.com/VISIALIS/alter/releases/download/v1.32.1/Alter-1.32.1-windows.zip",
+            "hash": "8379eed5a6b3c623a613aa0af98590addd0cf4c252576e7171bc78f142fa722a"
+        },
+        "arm64": {
+            "url": "https://github.com/VISIALIS/alter/releases/download/v1.32.1/Alter-1.32.1-windows-arm64.zip",
+            "hash": "8d01f480c222b5f19b9ac13f20881af7cbd45703bc4244da9d40cd67719f63c9"
+        }
+    },
     "extract_dir": "",
     "bin": "alter.exe",
     "shortcuts": [
@@ -14,9 +22,16 @@
         ]
     ],
     "checkver": {
-        "github": "https://github.com/VISIALIS/homebrew-alter"
+        "github": "https://github.com/VISIALIS/alter"
     },
     "autoupdate": {
-        "url": "https://github.com/VISIALIS/homebrew-alter/releases/download/v$version/Alter-$version-windows.zip"
+        "architecture": {
+            "64bit": {
+                "url": "https://github.com/VISIALIS/alter/releases/download/v$version/Alter-$version-windows.zip"
+            },
+            "arm64": {
+                "url": "https://github.com/VISIALIS/alter/releases/download/v$version/Alter-$version-windows-arm64.zip"
+            }
+        }
     }
 }
