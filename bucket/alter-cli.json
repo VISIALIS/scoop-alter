@@ -1,12 +1,12 @@
 {
-    "version": "1.32.1",
+    "version": "1.33.0",
     "description": "Alter CLI — Classify EVM addresses with structured detection (proxies, tokens, lending pools, DAOs).",
     "homepage": "https://alter.visialis.fr",
     "license": "Proprietary",
     "architecture": {
         "64bit": {
-            "url": "https://github.com/VISIALIS/alter/releases/download/v1.32.1/alter-cli-windows-x64.exe",
-            "hash": "3bdec9ae2d82f21165bed6db9cf114dd4647148c7bd0863fcae932e12beb33f5",
+            "url": "https://github.com/VISIALIS/alter/releases/download/v1.33.0/alter-cli-windows-x64.exe",
+            "hash": "8b96ea3ca9a638384319744e698c9ed71fec9052144b7af0894e12aac0299937",
             "bin": [
                 [
                     "alter-cli-windows-x64.exe",
@@ -15,8 +15,8 @@
             ]
         },
         "arm64": {
-            "url": "https://github.com/VISIALIS/alter/releases/download/v1.32.1/alter-cli-windows-arm64.exe",
-            "hash": "68514da86235dffd6198688d79d660ca819bf0a868c9afd5cae157b587ef8f7a",
+            "url": "https://github.com/VISIALIS/alter/releases/download/v1.33.0/alter-cli-windows-arm64.exe",
+            "hash": "aaf9da2b8ec6931c9b9108e785c5d773370502fb7ab2a2d94fbea7095ede0f8e",
             "bin": [
                 [
                     "alter-cli-windows-arm64.exe",
